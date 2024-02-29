@@ -28,29 +28,38 @@
 <body>
 <table>
     <thead>
-    <tr>
-        <th>Date</th>
-        <th>Check</th>
-        <th>Description</th>
-        <th>Amount</th>
-    </tr>
+        <tr>
+            <th>Date</th>
+            <th>Check</th>
+            <th>Description</th>
+            <th>Amount</th>
+        </tr>
     </thead>
     <tbody>
-
+        <?php if(is_array($transactions)): ?>
+            <?php foreach($transactions as $transaction): ?>
+                <tr>
+                    <td><?= $transaction['date'] ?></td>
+                    <td><?= $transaction['check'] ?></td>
+                    <td><?= $transaction['description'] ?></td>
+                    <td><?= $transaction['amount'] ?></td>
+                </tr>
+            <?php endforeach; ?>
+        <?php endif; ?>
     </tbody>
     <tfoot>
-    <tr>
-        <th colspan="3">Total Income:</th>
-        <td></td>
-    </tr>
-    <tr>
-        <th colspan="3">Total Expense:</th>
-        <td></td>
-    </tr>
-    <tr>
-        <th colspan="3">New Total:</th>
-        <td></td>
-    </tr>
+        <tr>
+            <th colspan="3">Total Income:</th>
+            <td></td>
+        </tr>
+        <tr>
+            <th colspan="3">Total Expense:</th>
+            <td></td>
+        </tr>
+        <tr>
+            <th colspan="3">New Total:</th>
+            <td></td>
+        </tr>
     </tfoot>
 </table>
 </body>
