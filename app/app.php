@@ -42,10 +42,34 @@ function formatTransaction(array $transactionRow): array
 {
     [$date, $check, $description, $amount] = $transactionRow;
 
+    $amount = str_replace(['$', ','], '', $amount);
+
     return [
         'date' => $date,
         'check' => $check,
         'description' => $description,
         'amount' => $amount
+    ];
+}
+
+function getTotals(array $transactions): array
+{
+    $totalIncome = 0;
+    $totalExpense = 0;
+    $netTotal = 0;
+
+    foreach ($transactions as $transaction) {
+        if ($transaction['amount'] > 0) {
+            $totalIncome += $transaction['amount'];
+        } else {
+            $totalExpense += $transaction['amount'];
+        }
+        $netTotal += $transaction['amount'];
+    }
+
+    return [
+        'totalIncome' => $totalIncome,
+        'totalExpense' => $totalExpense,
+        'netTotal' => $netTotal
     ];
 }

@@ -39,10 +39,10 @@
         <?php if(is_array($transactions)): ?>
             <?php foreach($transactions as $transaction): ?>
                 <tr>
-                    <td><?= $transaction['date'] ?></td>
+                    <td><?= formatDate($transaction['date']) ?></td>
                     <td><?= $transaction['check'] ?></td>
                     <td><?= $transaction['description'] ?></td>
-                    <td><?= $transaction['amount'] ?></td>
+                    <td style="color: <?= $transaction['amount'] > 0 ? 'green' : 'red' ?>"><?= $transaction['amount'] ?></td>
                 </tr>
             <?php endforeach; ?>
         <?php endif; ?>
@@ -50,15 +50,15 @@
     <tfoot>
         <tr>
             <th colspan="3">Total Income:</th>
-            <td></td>
+            <td><?= $totals['totalIncome'] ?></td>
         </tr>
         <tr>
             <th colspan="3">Total Expense:</th>
-            <td></td>
+            <td><?= $totals['totalExpense'] ?></td>
         </tr>
         <tr>
-            <th colspan="3">New Total:</th>
-            <td></td>
+            <th colspan="3">Net Total:</th>
+            <td><?= $totals['netTotal'] ?></td>
         </tr>
     </tfoot>
 </table>

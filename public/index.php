@@ -9,7 +9,9 @@ define('FILES_PATH', $root . 'transactions_files' . DIRECTORY_SEPARATOR);
 define('VIEWS_PATH', $root . 'views' . DIRECTORY_SEPARATOR);
 
 require_once APP_PATH . 'app.php';
+require_once APP_PATH . 'helpers.php';
 
 $transactions = getTransactions(FILES_PATH);
+$totals = getTotals($transactions);
 
 require_once VIEWS_PATH . 'transactions.php';
